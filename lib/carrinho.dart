@@ -33,7 +33,7 @@ class Carrinho {
     }
 
     return valorTotal + (valorTotal * imposto);
-    // valorTotal +=(valorTotal/imposto);
+    // valorTotal +=(valorTotal*imposto);
     // return valorTotal;
   }
 }
