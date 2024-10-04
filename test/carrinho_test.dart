@@ -10,7 +10,6 @@ void main() {
     () {
       test('Deve calcular o valor total do carrinho CHEIO', () async {
         //!PREPARAÇÃO DO TESTE
-        //*PREPARAÇÃO DO TESTE
         final items = [
           Item(nome: 'Galaxy J1', preco: 2000),
           Item(nome: 'Iphone 12', preco: 10000),
@@ -19,7 +18,6 @@ void main() {
         final carrinho = Carrinho(items: items);
         //
         //!AÇÃO OU EXECUÇÃO
-        //*AÇÃO OU EXECUÇÃO
         var valorTotalCarrinho = carrinho.totalCarrinho();
         //
         //!VERIFICAÇÃO
@@ -28,14 +26,10 @@ void main() {
 
       test('Deve calcular o valor total do carrinho VAZIO', () async {
         //!PREPARAÇÃO DO TESTE
-        //*PREPARAÇÃO DO TESTE
         final items = <Item>[];
         final carrinho = Carrinho(items: items);
-        //
         //!AÇÃO OU EXECUÇÃO
-        //*AÇÃO OU EXECUÇÃO
         var valorTotalCarrinho = carrinho.totalCarrinho();
-        //
         //!VERIFICAÇÃO
         expect(valorTotalCarrinho, 0);
       });
@@ -103,6 +97,88 @@ void main() {
         //EXECUÇÃO
         expect(valorTotalComOuSemImposto, 30000);
       });
+    },
+  );
+
+  group(
+    'G3 - Teste de igualdade',
+    () {
+      test(
+        "Teste de igualdade por igualdade de item e valor",
+        () {
+          //!PREPARAÇÃO
+          final carrinho = Carrinho(items: [
+            Item(nome: 'Galaxy J1', preco: 2000),
+            Item(nome: 'Iphone 12', preco: 10000),
+            Item(nome: 'Carregador', preco: 200),
+          ]);
+          //!VERIFICAÇÃO
+          //!EXECUÇÃO
+          expect(
+              carrinho.items, contains(Item(nome: 'Iphone 12', preco: 10000)));
+        },
+      );
+      test(
+        "Teste de igualdade por igualdade de QTD de item",
+        () {
+          //!PREPARAÇÃO
+          final carrinho = Carrinho(items: [
+            Item(nome: 'Galaxy J1', preco: 2000),
+            Item(nome: 'Iphone 12', preco: 10000),
+            Item(nome: 'Carregador', preco: 200),
+          ]);
+          //!VERIFICAÇÃO
+          //!EXECUÇÃO
+          expect(carrinho.items.length, 3);
+        },
+      );
+      test(
+        "Teste de igualdade para saber se é uma lista de itens",
+        () {
+          //!PREPARAÇÃO
+          final carrinho = Carrinho(items: [
+            Item(nome: 'Galaxy J1', preco: 2000),
+            Item(nome: 'Iphone 12', preco: 10000),
+            Item(nome: 'Carregador', preco: 200),
+          ]);
+          //!VERIFICAÇÃO
+          //!EXECUÇÃO
+          expect(carrinho.items, isA<List<Item>>());
+        },
+      );
+
+      test(
+        "Teste Exception",
+        () {
+          //!PREPARAÇÃO
+          // final items = <Item>[
+          // Item(nome: 'Galaxy J1', preco: 2000),
+          // Item(nome: 'Iphone 12', preco: 10000),
+          // Item(nome: 'Carregador', preco: 200),
+          // ];
+          // final carrinho = Carrinho(items: items);
+          //ou
+          final carrinho = Carrinho(items: <Item>[]);
+          //!VERIFICAÇÃO
+          var call = carrinho.totalCarrinho;
+          //!EXECUÇÃO
+          expect(() => call(), throwsException);
+        },
+      );
+
+      test(
+        "Teste Exception - customizada",
+        () {
+          //!PREPARAÇÃO
+          final carrinho = Carrinho(items: <Item>[]);
+          //!VERIFICAÇÃO
+          var call = carrinho.totalCarrinho;
+          //!EXECUÇÃO
+          expect(() => call(), throwsException);
+          //ou
+          // expect(() => call(), throwsA(isA<CarrinhoException>()));
+        },
+      );
     },
   );
 }
