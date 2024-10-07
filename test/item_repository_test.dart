@@ -7,16 +7,16 @@ void main() {
     //! PREPARAÇÃO
     var repository = ItemRepository();
     //! AÇÃO / EXECUÇÃO
-    var buscar = await repository.buscarTodos();
+    var buscar = await repository.buscarTodosAsync();
     //! VERIFICAÇÃO
     expect(buscar, isNotEmpty);
   });
 
-  test('F2 - Buscar todos Asyncrono - Não VAZIO - Forma 2', () {
+  test('F2 - Buscar todos Syncrono - Não VAZIO - Forma 2', () {
     //! PREPARAÇÃO
     var repository = ItemRepository();
     //! AÇÃO / EXECUÇÃO
-    var buscarTodos = repository.buscarTodos;
+    var buscarTodos = repository.buscarTodosSync;
     //! VERIFICAÇÃO
     expect(buscarTodos(), completion(isNotEmpty));
   });

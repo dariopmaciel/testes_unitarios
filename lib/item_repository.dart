@@ -1,7 +1,7 @@
 import 'package:testes_unitarios/item.dart';
 
 abstract interface class IItemRepository {
-  Future<List<Item>> buscarTodos();
+  Future<List<Item>> buscarTodosAsync();
   List<Item> buscarTodosSync();
   Item buscarPorId(int id);
 }
@@ -13,7 +13,7 @@ class ItemRepository implements IItemRepository {
   }
 
   @override
-  Future<List<Item>> buscarTodos() async {
+  Future<List<Item>> buscarTodosAsync() async {
     final items = [
       Item(nome: "Android", preco: 2000),
       Item(nome: "Iphone", preco: 10000),
