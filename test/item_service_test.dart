@@ -1,46 +1,53 @@
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:testes_unitarios/item.dart';
 import 'package:testes_unitarios/item_repository.dart';
 import 'package:testes_unitarios/item_service.dart';
 
-class ItemRepositoryFake implements IItemRepository {
-  @override
-  Future<List<Item>> buscarTodosAsync() async {
-    // throw Exception();
-    return <Item>[];
-  }
+// ! Não fazer desta forma
+// class ItemRepositoryFake implements IItemRepository {
+//   @override
+//   Future<List<Item>> buscarTodosAsync() async {
+//     // throw Exception();
+//     return <Item>[];
+//   }
 
-  @override
-  List<Item> buscarTodosSync() {
+//   @override
+//   List<Item> buscarTodosSync() {
     
-    return [];
-  }
+//     return [];
+//   }
 
-  @override
-  Item buscarPorId(int id) {
-    return Item(nome: "Item teste ", preco: 10);
-  }
+//   @override
+//   Item buscarPorId(int id) {
+//     return Item(nome: "Item teste ", preco: 10);
+//   }
+// }
+
+// class ItemRepositoryFakeException implements IItemRepository {
+//   @override
+//   Future<List<Item>> buscarTodosAsync() async {
+//     throw Exception();
+    
+//   }
+
+//   @override
+//   List<Item> buscarTodosSync() {
+    
+//     return [];
+//   }
+
+//   @override
+//   Item buscarPorId(int id) {
+//     return Item(nome: "Item teste ", preco: 10);
+//   }
+// }
+
+class ItemRepositoryFake extends Mock implements IItemRepository{
+
+
+
 }
-
-class ItemRepositoryFakeException implements IItemRepository {
-  @override
-  Future<List<Item>> buscarTodosAsync() async {
-    throw Exception();
-    
-  }
-
-  @override
-  List<Item> buscarTodosSync() {
-    
-    return [];
-  }
-
-  @override
-  Item buscarPorId(int id) {
-    return Item(nome: "Item teste ", preco: 10);
-  }
-}
-
 
 void main() {
   test('Asyncrono - Buscar TODOS os Itens ...', () async {
@@ -51,12 +58,12 @@ void main() {
     expect(items, <Item>[]);
   });
 
-  test('Asyncrono - Buscar TODOS os Itens retornam uma EXCEPTION...',
-      () async {
-    var service = ItemService(repository: ItemRepositoryFakeException());
+  // test('Asyncrono - Buscar TODOS os Itens retornam uma EXCEPTION...',
+  //     () async {
+  //   var service = ItemService(repository: ItemRepositoryFakeException());
 
-    final call = service.buscarTodosAsync;
+  //   final call = service.buscarTodosAsync;
 
-    expect(call(), throwsException);
-  });
+  //   expect(call(), throwsException);
+  // });
 }
