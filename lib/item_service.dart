@@ -12,6 +12,15 @@ class ItemService {
   Future<List<Item>> buscarTodosAsync() => repository.buscarTodosAsync();
 //sync
   List<Item> buscarTodosSync() => repository.buscarTodosSync();
+
 //buscar por ID
   Item buscarPorId(int id) => repository.buscarPorId(id);
+
+//! TESTE VERIFY MOCHTAIL
+  // Item buscarPorId(int id) {
+    //!CORREÇÃO
+    // return repository.buscarPorId(id);
+    //!TESTE
+    // return Item(nome: 'ITEM', preco: 10);
+  // }
 }
