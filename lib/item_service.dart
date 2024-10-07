@@ -4,7 +4,7 @@ import 'package:testes_unitarios/item.dart';
 import 'package:testes_unitarios/item_repository.dart';
 
 class ItemService {
-  IItemRepository repository;
+  final IItemRepository repository;
 
   ItemService({required this.repository});
 
