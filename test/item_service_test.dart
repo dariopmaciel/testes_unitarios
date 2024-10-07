@@ -14,7 +14,7 @@ import 'package:testes_unitarios/item_service.dart';
 
 //   @override
 //   List<Item> buscarTodosSync() {
-    
+
 //     return [];
 //   }
 
@@ -28,12 +28,12 @@ import 'package:testes_unitarios/item_service.dart';
 //   @override
 //   Future<List<Item>> buscarTodosAsync() async {
 //     throw Exception();
-    
+
 //   }
 
 //   @override
 //   List<Item> buscarTodosSync() {
-    
+
 //     return [];
 //   }
 
@@ -43,15 +43,22 @@ import 'package:testes_unitarios/item_service.dart';
 //   }
 // }
 
-class ItemRepositoryFake extends Mock implements IItemRepository{
-
-
-
-}
+class ItemRepositoryFake extends Mock implements IItemRepository {}
 
 void main() {
+  late IItemRepository itemRepository;
+
+  setUp(
+    () {
+      print("<-- Executando Setup ->>");
+      itemRepository = ItemRepositoryFake();
+    },
+  );
+
   test('Asyncrono - Buscar TODOS os Itens ...', () async {
-    var service = ItemService(repository: ItemRepositoryFake());
+    when(() => itemRepository.buscarTodosAsync()).thenAnswer((_) async => <Item>[]);
+    
+    var service = ItemService(repository: itemRepository);
 
     final items = await service.buscarTodosAsync();
 
