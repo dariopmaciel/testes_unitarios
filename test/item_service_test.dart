@@ -56,8 +56,10 @@ void main() {
   );
 
   test('Asyncrono - Buscar TODOS os Itens ...', () async {
-    when(() => itemRepository.buscarTodosAsync()).thenAnswer((_) async => <Item>[]);
-    
+    //Comportamento
+    when(() => itemRepository.buscarTodosAsync())
+        .thenAnswer((_) async => <Item>[]);
+
     var service = ItemService(repository: itemRepository);
 
     final items = await service.buscarTodosAsync();
@@ -65,12 +67,13 @@ void main() {
     expect(items, <Item>[]);
   });
 
-  // test('Asyncrono - Buscar TODOS os Itens retornam uma EXCEPTION...',
-  //     () async {
-  //   var service = ItemService(repository: ItemRepositoryFakeException());
+  test('Asyncrono - Buscar TODOS os Itens retornam uma EXCEPTION...', () async {
+    // Comportamento
+    when(() => itemRepository.buscarTodosAsync()).thenThrow(Exception());
+    var service = ItemService(repository: itemRepository);
 
-  //   final call = service.buscarTodosAsync;
+    final call = service.buscarTodosAsync;
 
-  //   expect(call(), throwsException);
-  // });
+    expect(() => call(), throwsException);
+  });
 }
